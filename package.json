@@ -1,0 +1,9 @@
+{
+  "name": "zmk-unicode",
+  "private": true,
+  "description": "Record-check scripts for the zmk-unicode Zephyr module. Firmware tests stay in GitHub Actions.",
+  "scripts": {
+    "records:check": "node ./scripts/check-product-records.mjs",
+    "test:records": "node --test tests/records-evidence.test.mjs"
+  }
+}

@@ -330,3 +330,19 @@ New _convenience macros_ should be prefixed by `UC_<NS>` where `<NS>` is a uniqu
 reflecting the use. In particular, all language headers should use the corresponding [two-letter ISO
 language code](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) as namespace. Other
 headers are encouraged to use at least three-letter namespace to avoid conflicts.
+
+## Maintenance
+
+This fork keeps the Zephyr module and adds CAP/CHG records for module changes. Current behavior is [CAP-001](docs/product/capabilities/CAP-001-unicode-behavior.md). Planned Studio parameter metadata is [CHG-001](docs/changes/active/CHG-001-advertise-unicode-parameter-metadata.md), not a shipped USB feature.
+
+Architecture and the decision to keep that metadata in this driver: [docs/architecture.md](docs/architecture.md), [docs/design-decisions.md](docs/design-decisions.md).
+
+Record check, which does not run the firmware workflow:
+
+```bash
+node scripts/check-product-records.mjs
+node --test tests/records-evidence.test.mjs
+```
+
+Firmware tests remain [`.github/workflows/test-main.yml`](.github/workflows/test-main.yml).
+
