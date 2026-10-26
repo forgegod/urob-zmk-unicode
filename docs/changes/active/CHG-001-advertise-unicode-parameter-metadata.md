@@ -1,6 +1,6 @@
 # CHG-001 — Advertise unicode parameter metadata
 
-**Status:** planned
+**Status:** in-progress
 **External request:** Direct operator request: adopt the AI Software Blueprint to this unicode fork and define the change record required so Studio RPC can accept `&uc` writes. Forks and upstream pull requests are allowed; put the change in the repository that owns the contract.
 **Impacts:** CAP-001
 **Baseline:** `6ce21267e497e20ff9e05da16d4eefcdd3e89190`
@@ -9,7 +9,7 @@ The browser client that sends these writes is `forgegod/katafoxi-keymap-editor-e
 
 | # | Phase | Status | Verification gate |
 | --- | --- | --- | --- |
-| 1 | Specify the two parameter sets | pending | `node scripts/check-product-records.mjs` exits 0 |
+| 1 | Specify the two parameter sets | in-progress | `node scripts/check-product-records.mjs` exits 0 |
 | 2 | Advertise metadata from the unicode driver | pending | `.github/workflows/test-main.yml` succeeds and `behavior_unicode_driver_api` sets parameter metadata |
 | 3 | Integrate the current capability record | pending | `node scripts/check-product-records.mjs && node --test tests/records-evidence.test.mjs` exits 0 |
 
