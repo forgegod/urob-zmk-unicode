@@ -10,7 +10,7 @@ The browser client that sends these writes is `forgegod/katafoxi-keymap-editor-e
 | # | Phase | Status | Verification gate |
 | --- | --- | --- | --- |
 | 1 | Specify the two parameter sets | done (`node scripts/check-product-records.mjs` exit 0 @ a74a0ce86e79cea49bc2ac894d276c4db9c1eca6) | `node scripts/check-product-records.mjs` exits 0 |
-| 2 | Advertise metadata from the unicode driver | pending | `.github/workflows/test-main.yml` succeeds and `behavior_unicode_driver_api` sets parameter metadata |
+| 2 | Advertise metadata from the unicode driver | in-progress | `.github/workflows/test-main.yml` succeeds and `behavior_unicode_driver_api` sets parameter metadata |
 | 3 | Integrate the current capability record | pending | `node scripts/check-product-records.mjs && node --test tests/records-evidence.test.mjs` exits 0 |
 
 ## Phase 1 — Specify the two parameter sets
