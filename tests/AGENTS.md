@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Native-sim fixtures for unicode input and the Node check that record evidence names those fixtures.
+Native-sim fixtures for unicode input and Node regression tests for record evidence and CHG phase lifecycle validation.
 
 ## Ownership
 
@@ -10,7 +10,9 @@ Native-sim fixtures for unicode input and the Node check that record evidence na
 
 ## Local Contracts
 
-A `native_sim.keymap` file is behavior evidence for the reusable ZMK test workflow. `records-evidence.test.mjs` proves only that the record validator accepts that fixture path. It does not flash a keyboard or execute Zephyr.
+A `native_sim.keymap` file is behavior evidence for the reusable ZMK test workflow. `records-evidence.test.mjs` checks evidence-path acceptance/rejection and CHG phase lifecycle validation. It does not flash a keyboard or execute Zephyr.
+
+Phase regressions count only status cells in numbered, four-cell rows of the unfenced canonical phase table. An active `in-progress` CHG may have zero `in-progress` rows only with at least one `done (<evidence>)` row and one `pending` row. Reject no-started/all-pending, all-done active, and multiple-in-progress states; fenced examples, unrelated tables, malformed rows, phase names, and gate text must not supply phase statuses.
 
 ## Work Guidance
 
@@ -18,7 +20,7 @@ Add a fixture beside the existing cases when a driver change needs a new input s
 
 ## Verification
 
-`node --test tests/records-evidence.test.mjs` checks the evidence matcher. The firmware workflow remains `.github/workflows/test-main.yml`.
+Run `node scripts/check-product-records.mjs` for repository records and `node --test tests/records-evidence.test.mjs` for evidence-path and phase-lifecycle regressions. The firmware workflow remains `.github/workflows/test-main.yml`.
 
 ## Child DOX Index
 

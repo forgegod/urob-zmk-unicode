@@ -30,7 +30,7 @@ const capabilityStatuses = new Set(["implemented", "partial", "retired"]);
 const activeChangeStatuses = new Set(["planned", "in-progress", "blocked"]);
 const archivedChangeStatuses = new Set(["done", "cancelled"]);
 const changeTableHeader =
-  /^\|\s*#\s*\|\s*Phase\s*\|\s*Status\s*\|\s*Verification gate\s*\|/m;
+  /^\|\s*#\s*\|\s*Phase\s*\|\s*Status\s*\|\s*Verification gate\s*\|\s*$/;
 
 /**
  * A candidate is treated as a repository reference when it is relative,
@@ -330,7 +330,9 @@ export async function validateRecords(root) {
       errors.push(`${relative} must name an External request`);
     if (!impacts) errors.push(`${relative} must name impacted CAP IDs`);
     if (!baseline) errors.push(`${relative} must name a Baseline`);
-    if (!changeTableHeader.test(source)) {
+    const phaseLines = withoutCodeFences(source).split(/\r?\n/);
+    const phaseHeaderIndex = phaseLines.findIndex(line => changeTableHeader.test(line));
+    if (phaseHeaderIndex < 0) {
       errors.push(`${relative} must include the canonical phase table header`);
     }
     if (!/^## Phase \d+ — /m.test(source)) {
@@ -338,10 +340,28 @@ export async function validateRecords(root) {
         `${relative} must include at least one numbered Phase section`,
       );
     }
-    const inProgressPhases = [
-      ...source.matchAll(/^\|\s*\d+\s*\|.*\|\s*in-progress\s*\|/gm),
-    ];
-    if (status === "in-progress" && inProgressPhases.length !== 1) {
+    // Only numbered, four-cell rows in the unfenced canonical table count.
+    const phaseStatuses = [];
+    if (phaseHeaderIndex >= 0 &&
+        /^\|(?:\s*:?-+:?\s*\|){4}\s*$/.test(phaseLines[phaseHeaderIndex + 1] ?? "")) {
+      for (const line of phaseLines.slice(phaseHeaderIndex + 2)) {
+        if (!line.startsWith("|")) break;
+        const row = line.match(/^\|\s*\d+\s*\|[^|]*\|([^|]*)\|[^|]*\|\s*$/);
+        if (row) phaseStatuses.push(row[1].trim());
+      }
+    }
+    const inProgressPhases = phaseStatuses.filter(value => value === "in-progress");
+    const completedPhases = phaseStatuses.filter(value => /^done \(.+\)$/.test(value));
+    const pendingPhases = phaseStatuses.filter(value => value === "pending");
+    const isBetweenPhases =
+      inProgressPhases.length === 0 &&
+      completedPhases.length > 0 &&
+      pendingPhases.length > 0;
+    if (
+      status === "in-progress" &&
+      inProgressPhases.length !== 1 &&
+      !isBetweenPhases
+    ) {
       errors.push(`${relative} must have exactly one in-progress phase`);
     }
     if (status === "planned" && inProgressPhases.length !== 0) {
