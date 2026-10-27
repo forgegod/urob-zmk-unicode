@@ -271,9 +271,60 @@ static int on_unicode_binding_released(struct zmk_behavior_binding *binding,
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
+#if IS_ENABLED(CONFIG_ZMK_BEHAVIOR_METADATA)
+
+static const struct behavior_parameter_value_metadata codepoint_values[] = {
+    {
+        .display_name = "Code Point",
+        .type = BEHAVIOR_PARAMETER_VALUE_TYPE_RANGE,
+        .range = {.min = 0, .max = 0x10FFFF},
+    },
+};
+
+static const struct behavior_parameter_value_metadata mode_select_values[] = {
+    {
+        .display_name = "Select Input Mode",
+        .type = BEHAVIOR_PARAMETER_VALUE_TYPE_VALUE,
+        .value = UC_SELECT_INPUT_MODE,
+    },
+};
+
+static const struct behavior_parameter_value_metadata input_mode_values[] = {
+    {
+        .display_name = "Input Mode",
+        .type = BEHAVIOR_PARAMETER_VALUE_TYPE_RANGE,
+        .range = {.min = UC_MODE_MACOS, .max = UC_MODE_EMACS},
+    },
+};
+
+static const struct behavior_parameter_metadata_set param_metadata_sets[] = {
+    {
+        .param1_values = codepoint_values,
+        .param1_values_len = ARRAY_SIZE(codepoint_values),
+        .param2_values = codepoint_values,
+        .param2_values_len = ARRAY_SIZE(codepoint_values),
+    },
+    {
+        .param1_values = mode_select_values,
+        .param1_values_len = ARRAY_SIZE(mode_select_values),
+        .param2_values = input_mode_values,
+        .param2_values_len = ARRAY_SIZE(input_mode_values),
+    },
+};
+
+static const struct behavior_parameter_metadata metadata = {
+    .sets_len = ARRAY_SIZE(param_metadata_sets),
+    .sets = param_metadata_sets,
+};
+
+#endif // IS_ENABLED(CONFIG_ZMK_BEHAVIOR_METADATA)
+
 static const struct behavior_driver_api behavior_unicode_driver_api = {
     .binding_pressed = on_unicode_binding_pressed,
     .binding_released = on_unicode_binding_released,
+#if IS_ENABLED(CONFIG_ZMK_BEHAVIOR_METADATA)
+    .parameter_metadata = &metadata,
+#endif // IS_ENABLED(CONFIG_ZMK_BEHAVIOR_METADATA)
 };
 
 static int behavior_unicode_init(const struct device *dev) {
