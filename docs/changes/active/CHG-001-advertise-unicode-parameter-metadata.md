@@ -11,7 +11,7 @@ The browser client that sends these writes is `forgegod/katafoxi-keymap-editor-e
 | --- | --- | --- | --- |
 | 1 | Specify the two parameter sets | done (`node scripts/check-product-records.mjs` exit 0 @ a74a0ce86e79cea49bc2ac894d276c4db9c1eca6) | `node scripts/check-product-records.mjs` exits 0 |
 | 2 | Advertise metadata from the unicode driver | done (`gh run watch 40647822265 --repo forgegod/urob-zmk-unicode --exit-status` exit 0 @ 08af43a5aa4838319046c1f2aa0d6efdf6c975d1) | `.github/workflows/test-main.yml` succeeds and `behavior_unicode_driver_api` sets parameter metadata |
-| 3 | Integrate the current capability record | pending | `node scripts/check-product-records.mjs && node --test tests/records-evidence.test.mjs` exits 0 |
+| 3 | Integrate the current capability record | in-progress | `node scripts/check-product-records.mjs && node --test tests/records-evidence.test.mjs` exits 0 |
 
 ## Phase 1 — Specify the two parameter sets
 
