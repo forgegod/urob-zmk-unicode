@@ -1,6 +1,6 @@
 # Current capability index
 
-These records describe the checked-out module. Planned Studio metadata is not a current capability.
+These records describe the checked-out module. They do not describe a keyboard pin, firmware flash, or browser client.
 
 | Capability | Status | Primary surface |
 | --- | --- | --- |

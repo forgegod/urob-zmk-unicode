@@ -24,9 +24,9 @@
 
 ## Current driver boundary
 
-`behavior_unicode_driver_api` sets `binding_pressed` and `binding_released`. It does not set `parameter_metadata` or `get_parameter_metadata`. A Studio client that writes `&uc` is therefore rejected by firmware validation. That absence is current behavior, not a shipped USB editor.
+`behavior_unicode_driver_api` sets `binding_pressed` and `binding_released`. With `CONFIG_ZMK_BEHAVIOR_METADATA`, it sets `parameter_metadata` so firmware validation can accept a matching `&uc` binding. This remains driver metadata, not a shipped USB editor.
 
-Code-point entry and mode switching still work from a compiled keymap. The native-sim fixtures cover those sequences. This initialization did not run the Zephyr workflow.
+Code-point entry and mode switching still work from a compiled keymap. The native-sim fixtures cover those sequences. CHG-001 phase 2 records a successful firmware workflow for the metadata revision.
 
 ## Verification
 

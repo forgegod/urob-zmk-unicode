@@ -48,13 +48,13 @@ Use `pending`, `in-progress`, and `done (<evidence>)` for phase rows. Keep one p
 
 ## Current records
 
-| Change | Status |
-| --- | --- |
-| [CHG-001 — Advertise unicode parameter metadata](active/CHG-001-advertise-unicode-parameter-metadata.md) | planned |
+No active change records.
 
 ## Archive
 
-No archived change records.
+| Change | Status |
+| --- | --- |
+| [CHG-001 — Advertise unicode parameter metadata](archive/CHG-001-advertise-unicode-parameter-metadata.md) | done |
 
 ## Review packages
 

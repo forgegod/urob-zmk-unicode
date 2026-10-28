@@ -333,7 +333,7 @@ headers are encouraged to use at least three-letter namespace to avoid conflicts
 
 ## Maintenance
 
-This fork keeps the Zephyr module and adds CAP/CHG records for module changes. Current behavior is [CAP-001](docs/product/capabilities/CAP-001-unicode-behavior.md). Planned Studio parameter metadata is [CHG-001](docs/changes/active/CHG-001-advertise-unicode-parameter-metadata.md), not a shipped USB feature.
+This fork keeps the Zephyr module and adds CAP/CHG records for module changes. Current behavior, including Studio parameter metadata, is [CAP-001](docs/product/capabilities/CAP-001-unicode-behavior.md). [CHG-001](docs/changes/archive/CHG-001-advertise-unicode-parameter-metadata.md) records the completed metadata change. It is not a shipped USB feature: a keyboard still needs a metadata-enabled firmware revision and flashing.
 
 Architecture and the decision to keep that metadata in this driver: [docs/architecture.md](docs/architecture.md), [docs/design-decisions.md](docs/design-decisions.md).
 

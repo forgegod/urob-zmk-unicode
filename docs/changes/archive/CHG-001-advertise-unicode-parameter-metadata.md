@@ -1,6 +1,6 @@
 # CHG-001 — Advertise unicode parameter metadata
 
-**Status:** in-progress
+**Status:** done
 **External request:** Direct operator request: adopt the AI Software Blueprint to this unicode fork and define the change record required so Studio RPC can accept `&uc` writes. Forks and upstream pull requests are allowed; put the change in the repository that owns the contract.
 **Impacts:** CAP-001
 **Baseline:** `6ce21267e497e20ff9e05da16d4eefcdd3e89190`
@@ -11,7 +11,7 @@ The browser client that sends these writes is `forgegod/katafoxi-keymap-editor-e
 | --- | --- | --- | --- |
 | 1 | Specify the two parameter sets | done (`node scripts/check-product-records.mjs` exit 0 @ a74a0ce86e79cea49bc2ac894d276c4db9c1eca6) | `node scripts/check-product-records.mjs` exits 0 |
 | 2 | Advertise metadata from the unicode driver | done (`gh run watch 40647822265 --repo forgegod/urob-zmk-unicode --exit-status` exit 0 @ 08af43a5aa4838319046c1f2aa0d6efdf6c975d1) | `.github/workflows/test-main.yml` succeeds and `behavior_unicode_driver_api` sets parameter metadata |
-| 3 | Integrate the current capability record | in-progress | `node scripts/check-product-records.mjs && node --test tests/records-evidence.test.mjs` exits 0 |
+| 3 | Integrate the current capability record | done (`node scripts/check-product-records.mjs; node --test tests/records-evidence.test.mjs` exit 0 @ aa94be35a53372baf6e7f257364f0061d308f749) | `node scripts/check-product-records.mjs && node --test tests/records-evidence.test.mjs` exits 0 |
 
 ## Phase 1 — Specify the two parameter sets
 

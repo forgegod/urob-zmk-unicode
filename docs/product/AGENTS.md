@@ -14,7 +14,7 @@ A CAP states present behavior and cites an existing implementation file plus a `
 
 ## Work Guidance
 
-Update a CAP only when observable module behavior changes. Studio parameter metadata is not current behavior until its CHG phase is verified.
+Update a CAP only when observable module behavior changes. Treat Studio parameter metadata as current behavior only after its CHG phase is verified.
 
 ## Verification
 

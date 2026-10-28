@@ -10,7 +10,7 @@ Runtime behavior compiled into a ZMK image.
 
 ## Local Contracts
 
-`CMakeLists.txt` compiles these sources only when the build is not split or the role is central. The unicode driver currently exposes `binding_pressed` and `binding_released` and does not advertise parameter metadata. Mode selection is `param1 == 0xffffff` with `param2` as the mode index. A code-point press uses `param2` when Shift is active and `param2` is not `UC_NONE` (`0`); otherwise it uses `param1`.
+`CMakeLists.txt` compiles these sources only when the build is not split or the role is central. The unicode driver exposes `binding_pressed` and `binding_released`; with `CONFIG_ZMK_BEHAVIOR_METADATA`, it also advertises parameter metadata. Mode selection is `param1 == 0xffffff` with `param2` as the mode index. A code-point press uses `param2` when Shift is active and `param2` is not `UC_NONE` (`0`); otherwise it uses `param1`.
 
 Do not move this driver into a ZMK fork to satisfy Studio validation.
 

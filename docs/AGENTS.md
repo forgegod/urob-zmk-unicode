@@ -10,7 +10,7 @@ Architecture, durable decisions, current module behavior, and change progress.
 
 ## Local Contracts
 
-CAPs describe behavior this revision implements. Active CHGs are the only progress authority. Planned metadata is not a shipped Studio capability.
+CAPs describe behavior this revision implements. Active CHGs are the only progress authority. Driver metadata does not pin, build, flash, or provide a browser client for a keyboard.
 
 This module has no primary human-facing surface and no `docs/product/wireframes/` directory.
 
